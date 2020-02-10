@@ -1,9 +1,10 @@
-package com.memory.consuption;
+package com.memory.consumption;
 
 import org.ehcache.sizeof.SizeOf;
 
 public class App {
 	public static void main(String[] args) {
+		// measure memory consumption in bytes of every object
     	String objectString = "";
     	SizeOf sizeOf = SizeOf.newInstance(); 
     	long shallowSize = sizeOf.sizeOf(objectString);
