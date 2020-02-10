@@ -37,7 +37,7 @@ public class LZW {
     /** Decompress a list of output ks to a string. */
     public static String decompress(List<Integer> compressed) {
         // Build the dictionary.
-        int dictSize = 128;
+        int dictSize = 127;
         Map<Integer,String> dictionary = new HashMap<Integer,String>();
         for (int i = 0; i < 128; i++)
             dictionary.put(i, "" + (char)i);
