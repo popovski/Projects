@@ -1,24 +1,25 @@
 package com.memory.consumption;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.ehcache.sizeof.SizeOf;
 
-import it.unimi.dsi.fastutil.bytes.ByteArrayList;
+import it.unimi.dsi.fastutil.shorts.ShortArrayList;
 
-public class LZW {
+public class LZW2 {
     /** Compress a string to a list of output symbols. */
-    public static byte[] compress(String uncompressed) {
+    public static ShortArrayList compress(String uncompressed) {
         // Build the dictionary.
-        byte dictSize = 127;
-        Map<String,Byte> dictionary = new HashMap<String,Byte>();
-        for (byte i = 0; i < 127; i++)
+        short dictSize = 127;
+        Map<String,Short> dictionary = new HashMap<String,Short>();
+        for (short i = 0; i < 127; i++)
             dictionary.put("" + (char)i, i);
  
         String w = "";
-        ByteArrayList result = new ByteArrayList(uncompressed.length());
+        ShortArrayList result = new ShortArrayList();
        // List<Integer> result = new ArrayList<Integer>();
         for (char c : uncompressed.toCharArray()) {
             String wc = w + c;
@@ -35,22 +36,20 @@ public class LZW {
         // Output the code for w.
         if (!w.equals(""))
             result.add(dictionary.get(w));
-        return result.toByteArray();
+        return result;
     }
  
     /** Decompress a list of output ks to a string. */
-    public static String decompress(byte[] compressed) {
+    public static String decompress(ShortArrayList compressed) {
         // Build the dictionary.
-        byte dictSize = 127;
-        Map<Byte,String> dictionary = new HashMap<Byte,String>();
-        for (byte i = 0; i < 127; i++)
+        int dictSize = 127;
+        Map<Integer,String> dictionary = new HashMap<Integer,String>();
+        for (int i = 0; i < 127; i++)
             dictionary.put(i, "" + (char)i);
  
-        String w = "" + (char)(byte)compressed[0];
-        compressed = Arrays.copyOfRange(compressed, 1, compressed.length);
-        
+        String w = "" + (char)(int)compressed.remove(0);
         StringBuffer result = new StringBuffer(w);
-        for (byte k : compressed) {
+        for (int k : compressed) {
             String entry;
             if (dictionary.containsKey(k))
                 entry = dictionary.get(k);
@@ -70,23 +69,21 @@ public class LZW {
     }
  
     public static void main(String[] args) {
-    	SizeOf sizeOf = SizeOf.newInstance();
-    	
     	String test = "To create an outstanding value for our customers "
-    			+ "and to empower them to outsmart their competition to to to to to to to ";
-    	System.out.println("ORIGINAL: " + test);
+    			+ "and to empower them to outsmart their competition";
+    	SizeOf sizeOf = SizeOf.newInstance(); 
+    	System.out.println(test.length());
     	
-        long deepSize2 = sizeOf.deepSizeOf(test);
-        System.out.println("ORIGINAL CONTENT MEMORY FOOT PRINT IN BYTES: " + deepSize2);
-    	
-    	byte[] compressed = compress("To create an outstanding value for our customers "
-        		+ "and to empower them to outsmart their competition to to to to to to to ");
+    	ShortArrayList compressed = compress("To create an outstanding value for our customers "
+        		+ "and to empower them to outsmart their competition");
         
-        String decompressed = decompress(compressed);
-        System.out.println("AFTER DECOMPRESS: " + decompressed);
+        System.out.println(compressed.size());
+        System.out.println(compressed);
         
         long deepSize = sizeOf.deepSizeOf(compressed);
-        System.out.println("Compress CONTENT MEMORY FOOT PRINT IN BYTES: " + deepSize);
 
+        System.out.println("deepSize: " + deepSize);
+        String decompressed = decompress(compressed);
+        System.out.println(decompressed);
     }
 }
