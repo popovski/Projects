@@ -70,23 +70,22 @@ public class LZW {
     }
  
     public static void main(String[] args) {
+    	String text = "To create an outstanding value for our customers and to empower them to outsmart their competition";
+    	
     	SizeOf sizeOf = SizeOf.newInstance();
+
+    	System.out.println("ORIGINAL: " + text);
     	
-    	String test = "To create an outstanding value for our customers "
-    			+ "and to empower them to outsmart their competition to to to to to to to ";
-    	System.out.println("ORIGINAL: " + test);
+        long deepSizeText = sizeOf.deepSizeOf(text);
+        System.out.println("ORIGINAL CONTENT MEMORY FOOT PRINT - BYTES: " + deepSizeText);
     	
-        long deepSize2 = sizeOf.deepSizeOf(test);
-        System.out.println("ORIGINAL CONTENT MEMORY FOOT PRINT IN BYTES: " + deepSize2);
-    	
-    	byte[] compressed = compress("To create an outstanding value for our customers "
-        		+ "and to empower them to outsmart their competition to to to to to to to ");
+    	byte[] compressed = compress(text);
         
         String decompressed = decompress(compressed);
-        System.out.println("AFTER DECOMPRESS: " + decompressed);
+        System.out.println("TEXT AFTER DECOMPRESS: " + decompressed);
         
         long deepSize = sizeOf.deepSizeOf(compressed);
-        System.out.println("Compress CONTENT MEMORY FOOT PRINT IN BYTES: " + deepSize);
+        System.out.println("Compress CONTENT MEMORY FOOT PRINT - BYTES: " + deepSize);
 
     }
 }
