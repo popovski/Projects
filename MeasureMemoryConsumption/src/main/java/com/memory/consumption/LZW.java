@@ -74,10 +74,10 @@ public class LZW {
     	
     	SizeOf sizeOf = SizeOf.newInstance();
 
-    	System.out.println("ORIGINAL: " + text);
+    	System.out.println("TEXT: " + text);
     	
         long deepSizeText = sizeOf.deepSizeOf(text);
-        System.out.println("ORIGINAL CONTENT MEMORY FOOT PRINT - BYTES: " + deepSizeText);
+        System.out.println("TEXT MEMORY FOOT PRINT - BYTES: " + deepSizeText);
     	
     	byte[] compressed = compress(text);
         
@@ -85,7 +85,7 @@ public class LZW {
         System.out.println("TEXT AFTER DECOMPRESS: " + decompressed);
         
         long deepSize = sizeOf.deepSizeOf(compressed);
-        System.out.println("Compress CONTENT MEMORY FOOT PRINT - BYTES: " + deepSize);
+        System.out.println("COMPRESS TEXT MEMORY FOOT PRINT - BYTES: " + deepSize);
 
     }
 }
