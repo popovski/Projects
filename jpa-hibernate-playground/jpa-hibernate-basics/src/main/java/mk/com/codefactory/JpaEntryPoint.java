@@ -1,8 +1,8 @@
 package mk.com.codefactory;
 
-import com.bobocode.model.Account;
-import com.bobocode.util.JpaUtil;
-import com.bobocode.util.TestDataGenerator;
+import mk.com.codefactory.Account;
+import mk.com.codefactory.util.JpaUtil;
+import mk.com.codefactory.util.TestDataGenerator;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

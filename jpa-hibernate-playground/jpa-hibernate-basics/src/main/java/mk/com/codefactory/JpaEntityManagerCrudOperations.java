@@ -1,13 +1,12 @@
 package mk.com.codefactory;
 
 
-import com.bobocode.model.Account;
-import com.bobocode.util.TestDataGenerator;
+import mk.com.codefactory.Account;
+import mk.com.codefactory.util.TestDataGenerator;
+
+import static mk.com.codefactory.util.JpaUtil.*;
 
 import java.util.List;
-
-import static com.bobocode.util.JpaUtil.*;
-import static com.bobocode.util.JpaUtil.performWithinPersistenceContext;
 
 /**
  * This code example shows a typical usage of {@link javax.persistence.EntityManager} and its Create, Read, Update,

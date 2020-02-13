@@ -1,10 +1,10 @@
 package mk.com.codefactory;
 
 
-import com.bobocode.model.Account;
-import com.bobocode.util.TestDataGenerator;
+import static mk.com.codefactory.util.JpaUtil.*;
 
-import static com.bobocode.util.JpaUtil.*;
+import mk.com.codefactory.Account;
+import mk.com.codefactory.util.TestDataGenerator;
 
 /**
  * This tutorial provides examples of different JPA entity states. {@link Account} instance, which is a JPA entity
