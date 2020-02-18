@@ -26,4 +26,8 @@ public class Table2 {
     
     @Column(name = "name")
     private String name;
+    
+    @Column(name = "tableNumber")
+    private String tableNumber;
+    
 }
